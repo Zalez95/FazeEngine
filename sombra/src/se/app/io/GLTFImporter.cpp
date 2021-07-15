@@ -738,7 +738,7 @@ namespace se::app {
 
 			graphics::ColorFormat format = graphics::ColorFormat::RGB;
 			switch (image.channels) {
-				case 1:	format = graphics::ColorFormat::Red;	break;
+				case 1:	format = graphics::ColorFormat::R;		break;
 				case 2:	format = graphics::ColorFormat::RG;		break;
 				case 3:	format = graphics::ColorFormat::RGB;	break;
 				case 4:	format = graphics::ColorFormat::RGBA;	break;

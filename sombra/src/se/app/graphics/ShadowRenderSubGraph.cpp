@@ -141,9 +141,9 @@ namespace se::app {
 	}
 
 
-	void ShadowRenderSubGraph::setCameraViewProjectionMatrix(const glm::mat4& vpMatrix)
+	void ShadowRenderSubGraph::setInvCameraViewProjectionMatrix(const glm::mat4& invVPMatrix)
 	{
-		mMergeShadowsNode->setCameraVPMatrix(vpMatrix);
+		mMergeShadowsNode->setInvCameraVPMatrix(invVPMatrix);
 	}
 
 
@@ -177,11 +177,11 @@ namespace se::app {
 		));
 
 		auto shadowTexture = std::make_shared<Texture>(TextureTarget::Texture2D);
-		shadowTexture->setTextureUnit(static_cast<int>(shadowIndex))
+		shadowTexture->setImage(nullptr, TypeId::Float, ColorFormat::Depth, ColorFormat::Depth, 1, 1)
 			.setWrapping(TextureWrap::ClampToBorder, TextureWrap::ClampToBorder)
 			.setFiltering(TextureFilter::Nearest, TextureFilter::Nearest)
 			.setBorderColor(1.0f, 1.0f, 1.0f, 1.0f)
-			.setImage(nullptr, TypeId::Float, ColorFormat::Depth, ColorFormat::Depth, 1, 1);
+			.setTextureUnit(static_cast<int>(shadowIndex));
 		shadowBuffer->attach(*shadowTexture, FrameBufferAttachment::kDepth);
 		auto iShadowTextureBindable = resources->addBindable(shadowTexture);
 		resources->addOutput(std::make_unique<BindableRNodeOutput<Texture>>(
@@ -238,7 +238,7 @@ namespace se::app {
 
 	void ShadowRenderSubGraph::setShadowVPMatrix(std::size_t shadowIndex, const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix)
 	{
-		glm::mat4 vpMatrix = viewMatrix * projectionMatrix;
+		glm::mat4 vpMatrix = projectionMatrix * viewMatrix;
 
 		mShadows[shadowIndex].viewMatrix = viewMatrix;
 		mShadows[shadowIndex].projectionMatrix = projectionMatrix;

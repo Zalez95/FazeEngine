@@ -706,7 +706,7 @@ namespace se::app {
 	{
 		auto toColorFormat = [](int channels) {
 			switch (channels) {
-				case 1:		return ColorFormat::Red;
+				case 1:		return ColorFormat::R;
 				case 2:		return ColorFormat::RG;
 				case 3:		return ColorFormat::RGB;
 				default:	return ColorFormat::RGBA;

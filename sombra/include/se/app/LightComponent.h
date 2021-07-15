@@ -52,6 +52,10 @@ namespace se::app {
 	{
 		/** A pointer to the LightSource that is going to be used */
 		Repository::ResourceRef<LightSource> source;
+
+		/** The index of the Shadow projected by the light, -1 if it doesn't
+		 * project any shadow */
+		int shadowIndex = -1;
 	};
 
 

@@ -403,7 +403,7 @@ namespace game {
 				.setFiltering(se::graphics::TextureFilter::Linear, se::graphics::TextureFilter::Linear)
 				.setWrapping(se::graphics::TextureWrap::ClampToEdge, se::graphics::TextureWrap::ClampToEdge)
 				.setImage(
-					heightMap1.pixels.get(), se::graphics::TypeId::UnsignedByte, se::graphics::ColorFormat::Red, se::graphics::ColorFormat::Red,
+					heightMap1.pixels.get(), se::graphics::TypeId::UnsignedByte, se::graphics::ColorFormat::R, se::graphics::ColorFormat::R,
 					heightMap1.width, heightMap1.height
 				);
 

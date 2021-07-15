@@ -755,7 +755,7 @@ namespace editor {
 				std::string name1 = "Build terrain" + getIdPrefix() + "ColliderComponentNode::BuildTerrain";
 				if (ImGui::Button(name1.c_str())) {
 					auto image = TextureUtils::textureToImage<unsigned char>(
-						*heightTexture, TypeId::UnsignedByte, ColorFormat::Red, mSize1, mSize2
+						*heightTexture, TypeId::UnsignedByte, ColorFormat::R, mSize1, mSize2
 					);
 					auto heights = MeshLoader::calculateHeights(image.pixels.get(), image.width, image.height);
 					terrain.setHeights(heights.data(), image.width, image.height);
